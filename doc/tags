@@ -1,0 +1,15 @@
+Configuration	kittyrunner.txt	/*Configuration*
+KittyRunner	kittyrunner.txt	/*KittyRunner*
+KittyRunnerAbout	kittyrunner.txt	/*KittyRunnerAbout*
+KittyRunnerClose	kittyrunner.txt	/*KittyRunnerClose*
+KittyRunnerConfiguration_extra_opts	kittyrunner.txt	/*KittyRunnerConfiguration_extra_opts*
+KittyRunnerConfiguration_keep_focus	kittyrunner.txt	/*KittyRunnerConfiguration_keep_focus*
+KittyRunnerConfiguration_prompt_string	kittyrunner.txt	/*KittyRunnerConfiguration_prompt_string*
+KittyRunnerInterrupt	kittyrunner.txt	/*KittyRunnerInterrupt*
+KittyRunnerOneoff	kittyrunner.txt	/*KittyRunnerOneoff*
+KittyRunnerOpen	kittyrunner.txt	/*KittyRunnerOpen*
+KittyRunnerPrompt	kittyrunner.txt	/*KittyRunnerPrompt*
+KittyRunnerSendText	kittyrunner.txt	/*KittyRunnerSendText*
+KittyRunnerUsage	kittyrunner.txt	/*KittyRunnerUsage*
+kittyrunner-contents	kittyrunner.txt	/*kittyrunner-contents*
+vim-kittyrunner	kittyrunner.txt	/*vim-kittyrunner*

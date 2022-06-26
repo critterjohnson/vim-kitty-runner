@@ -1,0 +1,144 @@
+*vim-kittyrunner* interact with kitty from vim
+KittyRunner
+                        interact with kitty from vim
+==============================================================================
+CONTENTS                                                *kittyrunner-contents*
+
+        1. About............................... |KittyRunnerAbout|
+        2. Usage............................... |KittyRunnerUsage|
+        3. Configuration....................... |KittyRunnerConfiguration|
+
+
+==============================================================================
+About (1)                                                   *KittyRunnerAbout*
+
+KittyRunner -- interact with kitty from vim
+
+KittyRunner is inspired by vimux [1], a plugin that facilitates easy
+interaction between tmux and vim. The kitty terminal remotes the need for a
+terminal multiplexer like tmux, and in fact does not play well with them, but
+there was no good vim plugin for running commands in a vimux-style runner from
+within kitty.
+
+By default, when you call `KittyRunner` it will create a new kitty window
+(note that this is the kitty definition of window - like a pane in tmux, _not_
+an OS window). All further commands run with `KittyRunner` will run in this
+same kitty window.
+
+[1] https://github.com/preservim/vimux/blob/master/plugin/vimux.vim
+
+
+==============================================================================
+Usage (2)                                                   *KittyRunnerUsage*
+
+The function KittyRunner usual entrypoint for KittyRunner. It runs a command
+in a new kitty window (pane), and designates it as the window to run all
+future KittyRunner commands in.
+>
+    :call KittyRunner("ls")
+<
+This runs the `ls` command inside a new kitty window.
+
+There are other KittyRunner commands:
+        - |KittyRunner|
+        - |KittyRunnerOneoff|
+        - |KittyRunnerSendText|
+        - |KittyRunnerOpen|
+        - |KittyRunnerClose|
+        - |KittyRunnerInterrupt|
+        - |KittyRunnerPrompt|
+
+
+------------------------------------------------------------------------------
+KittyRunner~
+                                                                 *KittyRunner*
+
+Run a command in the KittyRunner pane, creating it if it doesn't exist. This
+will spawn a kitty window (equivalent to a tmux pane) designated for running
+commands from KittyRunner. All further KittyRunner commands will be run in
+this window.
+
+KittyRunners are associated with the _kitty window they are created from_, so
+if vim is closed and reopened new commands will be run in the same Kitty
+Runner.
+
+------------------------------------------------------------------------------
+KittyRunnerOneoff~
+                                                           *KittyRunnerOneoff*
+
+Run a command in a new pane. This will always create a new pane, regardless of
+whether or not one already exists, and will not put the user back in the shell
+after the command is complete.
+
+------------------------------------------------------------------------------
+KittyRunnerSendText~
+                                                         *KittyRunnerSendText*
+
+Send text to the KittyRunner pane. Internally calls `kitty @ send-text` [1],
+and so will follow all python escape conventions
+
+[1] https://sw.kovidgoyal.net/kitty/remote-control/#kitty-send-text
+
+------------------------------------------------------------------------------
+KittyRunnerOpen~
+                                                             *KittyRunnerOpen*
+
+Opens the KittyRunner pane without running a command. Does nothing if there is
+already a designated KittyRunner pane.
+
+------------------------------------------------------------------------------
+KittyRunnerClose~
+                                                            *KittyRunnerClose*
+
+Closes the KittyRunner pane. Does nothing if there is no pane open.
+
+------------------------------------------------------------------------------
+KittyRunnerInterrupt~
+                                                        *KittyRunnerInterrupt*
+
+Sends SIGTERM to the KittyRunner pane.
+
+------------------------------------------------------------------------------
+KittyRunnerPrompt~
+                                                           *KittyRunnerPrompt*
+
+Prompts the user for a command to run in a KittyRunner. Optionally, the prompt
+can be changed or a parameter can be supplied to define a part of the command
+that can be edited in the prompt.
+>
+        map <Leader>kp :KittyRunnerPromptCommand<CR>
+        map <Leader>vm :KittyRunnerPromptCommand("make ")<CR>
+<
+
+==============================================================================
+Configuration (3)                                              *Configuration*
+
+The following are the configuration options for KittyRunner:
+
+------------------------------------------------------------------------------
+                                         *KittyRunnerConfiguration_keep_focus*
+3.2 g:kittyrunner_keep_focus
+
+Whether or not to keep the focus on the current window when opening a new
+KittyRunner. Defaults to 1.
+>
+        let g:kittyrunner_keep_focus = 0
+<
+------------------------------------------------------------------------------
+                                      *KittyRunnerConfiguration_prompt_string*
+3.2 g:kittyrunner_prompt_string
+
+The string to prompt the user with when |KittyRunnerPromptCommand| is called.
+>
+        let g:kittyrunner_prompt_string = "cmd: "
+<
+------------------------------------------------------------------------------
+                                         *KittyRunnerConfiguration_extra_opts*
+3.3 g:kittyrunner_extra_opts~
+
+Advanced: Extra options to pass to `kitty @ send-text` when KittyRunner is
+called or `kitty @ launch` when KittyRunnerOneoff is called.
+
+
+==============================================================================
+vim:tw=78:ts=2:sw=2:expandtab:ft=help:norl:
