@@ -12,6 +12,8 @@ sys.path.insert(0, python_root_dir)
 import kittyrunner
 EOF
 
+let g:kittyrunner_cwd = getcwd()
+
 if !exists("g:kittyrunner_extra_opts")
     let g:kittyrunner_extra_opts = ''
 endif

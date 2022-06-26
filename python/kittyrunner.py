@@ -9,7 +9,8 @@ def window_name(pid: int) -> str:
 
 # creates a kitty window with the given name
 def create_window(win_name:str):
-    cmdstr = f'kitty @ launch --title {win_name}'
+    wd = vim.eval('g:kittyrunner_cwd')
+    cmdstr = f'kitty @ launch --cwd {wd} --title {win_name}'
     if vim.eval('g:kittyrunner_keep_focus') == "1":
         cmdstr += ' --keep-focus'
     os.popen(cmdstr)
@@ -56,7 +57,7 @@ def open_runner() -> str:
 
     if not win_exists:
         create_window(win_name)
-    
+
     return win_name
 
 # closes the runner if it exists
@@ -76,8 +77,9 @@ def run_command(cmd: str = ''):
 
 # runs a command in a guaranteed new window
 def run_oneoff_command():
+    wd = vim.eval('g:kittyrunner_cwd')
     cmd = vim.eval('a:cmd')
-    os.popen(f'kitty @ launch --keep-focus --copy-env {extra_opts} $SHELL -c "{cmd}"')
+    os.popen(f'kitty @ launch --cwd {wd} --keep-focus --copy-env {extra_opts} $SHELL -c "{cmd}"')
 
 # interrupts the runner if it exists
 def interrupt_runner():
