@@ -60,6 +60,13 @@ def open_runner() -> str:
 
     return win_name
 
+def assign_runner() -> str:
+    win_id = vim.eval('a:win_id')
+    win_exists, win_name = window_exists()
+    if not win_exists:
+        stream = os.popen(f'kitty @ set-window-title --match id:{win_id} {win_name}')
+        stream.read()
+
 # closes the runner if it exists
 def close_runner():
     win_exists, win_name = window_exists()

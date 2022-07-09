@@ -44,6 +44,7 @@ There are other KittyRunner commands:
         - |KittyRunnerOneoff|
         - |KittyRunnerSendText|
         - |KittyRunnerOpen|
+        - |KittyRunnerAssign|
         - |KittyRunnerClose|
         - |KittyRunnerInterrupt|
         - |KittyRunnerPrompt|
@@ -85,6 +86,13 @@ KittyRunnerOpen~
 
 Opens the KittyRunner pane without running a command. Does nothing if there is
 already a designated KittyRunner pane.
+
+------------------------------------------------------------------------------
+KittyRunnerAssign~
+                                                             *KittyRunnerAssign*
+
+Assigns the given kitty window ID to be the kitty runner. To get a Kitty
+window's ID, run `env | grep KITTY_WINDOW_ID`.
 
 ------------------------------------------------------------------------------
 KittyRunnerClose~

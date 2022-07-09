@@ -42,6 +42,10 @@ function! KittyRunnerOpen()
     python3 kittyrunner.open_runner()
 endfunction
 
+function! KittyRunnerAssign(win_id)
+    python3 kittyrunner.assign_runner()
+endfunction
+
 function! KittyRunnerClose()
     python3 kittyrunner.close_runner()
 endfunction
@@ -60,6 +64,7 @@ command! -nargs=1 KittyRunner call KittyRunner(<args>)
 command! -nargs=1 KittyRunnerOneoff call KittyRunnerOneoff(<args>)
 command! -nargs=1 KittyRunnerSendText call KittyRunnerSendText(<args>)
 command! -nargs=0 KittyRunnerOpen call KittyRunnerOpen()
+command! -nargs=* KittyRunnerAssign call KittyRunnerAssign(<args>)
 command! -nargs=0 KittyRunnerClose call KittyRunnerClose()
 command! -nargs=0 KittyRunnerInterrupt call KittyRunnerInterrupt()
 command! -nargs=* KittyRunnerPrompt call KittyRunnerPrompt(<args>)
